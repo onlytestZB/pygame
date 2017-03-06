@@ -13,7 +13,7 @@ def run_game():
     ai_settings = Settings()
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
-    # 创建飞船
+    # 创建飞船状态
     ship = Ship(ai_settings, screen)
     # 存储子弹状态
     bullets = Group()
