@@ -129,6 +129,16 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     sleep(0.5)
 
 
+def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
+    """"检查外星人是否到达底部"""
+    # screen_rect = screen.get_rect() 我修改为到飞船顶部就算到达底部
+    for alien in aliens.sprites():
+        if alien.rect.bottom >= ship.rect.top:
+            # 像飞船被撞到一样处理
+            ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+            break
+
+
 def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
     """"更新所有外星人位置"""
     check_fleet_edges(ai_settings, aliens)
@@ -136,6 +146,8 @@ def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
     # 检测外星人和飞船之间的碰撞
     if pygame.sprite.spritecollideany(ship, aliens):
          ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+    # 检测外星人是否到达底部
+    check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets)
 
 
 def check_fleet_edges(ai_settings, aliens):
