@@ -43,7 +43,7 @@ def fire_bullet(ai_settings,screen,ship,bullets):
         bullets.add(new_bullet)
 
 
-def update_screen(ai_settings,screen,ship,aliens,bullets):
+def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
     # 更新屏幕
     # 重绘背景色
     screen.fill(ai_settings.bg_color)
@@ -52,6 +52,8 @@ def update_screen(ai_settings,screen,ship,aliens,bullets):
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+    if not stats.game_active:
+        play_button.draw_button()
     # 显示
     pygame.display.flip()
 
