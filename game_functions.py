@@ -114,19 +114,22 @@ def create_fleet(ai_settings, screen, ship, aliens):
 
 def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     """"响应被外星人撞到的飞船"""
-    # 将ships_left减一
-    stats.ships_left -= 1
+    if stats.ships_left>0:
+        # 将ships_left减一
+        stats.ships_left -= 1
 
-    # 清空外星人和子弹
-    aliens.empty()
-    bullets.empty()
+        # 清空外星人和子弹
+        aliens.empty()
+        bullets.empty()
 
-    # 创建一群新外星人和飞船
-    create_fleet(ai_settings, screen, ship, aliens)
-    ship.center_ship()
+        # 创建一群新外星人和飞船
+        create_fleet(ai_settings, screen, ship, aliens)
+        ship.center_ship()
 
-    # 暂停
-    sleep(0.5)
+        # 暂停
+        sleep(0.5)
+    else:
+        stats.game_active = False
 
 
 def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
